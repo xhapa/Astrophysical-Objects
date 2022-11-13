@@ -9,7 +9,13 @@ import geopandas as gpd
 class Plot_frame(ttk.Frame):
     def __init__(self, container):
         super().__init__(container)
+        self.styles()
+        self.widgets()
+    
+    def styles(self):
+        pass
 
+    def widgets(self):
         self.fig, self.ax = plt.subplots(figsize=(8, 5))
         self.canvas = FigureCanvasTkAgg(self.fig, self)
         self.canvas.get_tk_widget().pack(ipadx=20, ipady=20, expand=False, side=tk.TOP, anchor='center')
