@@ -6,7 +6,7 @@ from main_frame import Main_frame
 class App(tk.Tk):
 	def __init__(self):
 		super().__init__()
-		self.title('Distance between two points')
+		self.title('Coodinate transformation')
 		self.attributes('-fullscreen', True)
 		#self.geometry("700x500")	
 
