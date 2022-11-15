@@ -8,33 +8,38 @@ from Utilities.locations_frame import Location_frame
 from Utilities.plot_frame import Plot_frame
 
 class Main_frame(ttk.Frame):
-    def __init__(self, container):  
-        super().__init__(container)   
+    def __init__(self, container, style=None):  
+        super().__init__(container, style= style)   
         self.container = container
         self.styles()
         self.widgets()
 
     def styles(self):
         self.style = ttk.Style()
-        self.style.configure('TLabel', font=('Helvetica', 10))  
+        self.style.configure('Label1.TLabel', font=('courier', 15, 'bold'), background='#dfd5e5')  
+        self.style.configure('TButton', background='#f4fcfb', font=('courier', 15, 'bold'))
+        self.style.configure('Label2.TLabel', font=('courier', 20, 'bold'), background='#dfd5e5') 
 
     def widgets(self):
+        self.title_label = ttk.Label(self, text='¿Qué tan lejos estamos?', style='Label2.TLabel')
+        self.title_label.pack(side=tk.TOP, anchor='n', pady=25)
+        
         self.plot_frame = Plot_frame(self.container)
-        self.plot_frame.pack(side=tk.TOP, pady=20, padx=20)
+        self.plot_frame.pack(side=tk.BOTTOM, padx=20, pady=20)
 
-        self.location_a = Location_frame(self,'First Location')
-        self.location_a.pack(side=tk.LEFT)
-        self.location_b = Location_frame(self,'Second Location')
-        self.location_b.pack(side=tk.LEFT)
+        self.distance_label = ttk.Label(self, text='La distancia entre ...', style='Label1.TLabel')
+        self.distance_label.pack(side=tk.BOTTOM, ipadx = 10, ipady = 10, anchor='s')    
 
-        self.enter_button = ttk.Button(self, text = "Enter", style='TLabel', command=self.request_locations)
-        self.enter_button.pack(side=tk.LEFT, padx = 10, pady = 10, anchor='s')
+        self.location_a = Location_frame(self,'Primera Ubicación')
+        self.location_a.pack(side=tk.LEFT, padx=10)
+        self.location_b = Location_frame(self,'Segunda Ubicación')
+        self.location_b.pack(side=tk.LEFT, padx=10)
 
-        self.calculate_button = ttk.Button(self, text = "Calculate", style='TLabel', command=self.distance_between_2points)
-        self.calculate_button.pack(side=tk.LEFT, padx = 10, pady = 10, anchor='s')
+        self.enter_button = ttk.Button(self, text = "Enter", style='TButton', command=self.request_locations)
+        self.enter_button.pack(side=tk.LEFT, padx = 5, pady = 5, anchor='s', ipadx=30, ipady=15)
 
-        self.distance_label = ttk.Label(self, text='Distance is')
-        self.distance_label.pack(side=tk.TOP, padx = 10, pady = 10, anchor='s')
+        self.calculate_button = ttk.Button(self, text = "Calcular", style='TButton', command=self.distance_between_2points)
+        self.calculate_button.pack(side=tk.LEFT, padx = 5, pady = 5, anchor='s', ipadx=30, ipady=15)
 
     def request_locations(self):
         if self.location_a.location!='' and self.location_b.location!='':
@@ -54,4 +59,4 @@ class Main_frame(ttk.Frame):
         angle = np.arccos(x)
 
         self.distance = earth_radius*angle*u.kilometer
-        self.distance_label.config(text=f'Distance is {self.distance}')
+        self.distance_label.config(text=f'La distancia entre {self.location_a.location} y {self.location_b.location} es de {self.distance}')

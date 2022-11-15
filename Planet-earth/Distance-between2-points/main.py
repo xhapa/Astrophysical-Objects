@@ -8,10 +8,13 @@ class App(tk.Tk):
 		super().__init__()
 		self.title('Distance between two points')
 		self.attributes('-fullscreen', True)
+		self.configure(background='#dfd5e5')
+		self.style = ttk.Style()
+		self.style.configure('TFrame', background='#dfd5e5')
 		#self.geometry("700x500")	
 
-		main_frame = Main_frame(self)
-		main_frame.pack(side=tk.BOTTOM, pady=40, padx=40)
+		main_frame = Main_frame(self, style='TFrame')
+		main_frame.pack(side=tk.TOP, pady=10)
 
 def main():
 	app = App()

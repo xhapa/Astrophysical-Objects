@@ -18,7 +18,7 @@ class Plot_frame(ttk.Frame):
     def widgets(self):
         self.fig, self.ax = plt.subplots(figsize=(8, 5))
         self.canvas = FigureCanvasTkAgg(self.fig, self)
-        self.canvas.get_tk_widget().pack(ipadx=20, ipady=20, expand=False, side=tk.TOP, anchor='center')
+        self.canvas.get_tk_widget().pack(ipadx=5, ipady=5, expand=False, side=tk.TOP, anchor='center')
         self.canvas.draw()
     
     def plot_point_world_map(self, point_a, point_b):

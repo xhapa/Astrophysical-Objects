@@ -9,14 +9,15 @@ class Location_frame(ttk.Frame):
         self.widgets()
 
     def styles(self):
-        pass
+        self.style = ttk.Style()
+        self.style.configure('TLabel', font=('courier', 15, 'bold'), background='#dfd5e5')  
 
     def widgets(self):
-        self.location_label = ttk.Label(self, text=self.label_text)
-        self.location_label.pack(side=tk.LEFT, padx = 10, pady = 10, anchor='s')
+        self.location_label = ttk.Label(self, text=self.label_text, style='TLabel')
+        self.location_label.pack(side=tk.LEFT, ipadx = 10, ipady = 10, anchor='s')
 
-        self.__location = ttk.Entry(self)
-        self.__location.pack(side=tk.LEFT, padx = 10, pady = 10, anchor='s')
+        self.__location = ttk.Entry(self, style=None)
+        self.__location.pack(side=tk.LEFT, ipadx = 20, ipady = 10, anchor='s')
 
     @property
     def location(self):
