@@ -16,9 +16,9 @@ class Main_frame(ttk.Frame):
 
     def styles(self):
         self.style = ttk.Style()
-        self.style.configure('Label1.TLabel', font=('courier', 15, 'bold'), background='#dfd5e5')  
+        self.style.configure('Label1.TLabel', font=('courier', 15, 'bold'), background='#d4e8b9')  
         self.style.configure('TButton', background='#f4fcfb', font=('courier', 15, 'bold'))
-        self.style.configure('Label2.TLabel', font=('courier', 20, 'bold'), background='#dfd5e5') 
+        self.style.configure('Label2.TLabel', font=('courier', 20, 'bold'), background='#d4e8b9', foreground='black') 
 
     def widgets(self):
         self.title_label = ttk.Label(self, text='¿Qué tan lejos estamos?', style='Label2.TLabel')

@@ -10,7 +10,7 @@ class Location_frame(ttk.Frame):
 
     def styles(self):
         self.style = ttk.Style()
-        self.style.configure('TLabel', font=('courier', 15, 'bold'), background='#dfd5e5')  
+        self.style.configure('TLabel', font=('courier', 15, 'bold'), background='#d4e8b9')  
 
     def widgets(self):
         self.location_label = ttk.Label(self, text=self.label_text, style='TLabel')
