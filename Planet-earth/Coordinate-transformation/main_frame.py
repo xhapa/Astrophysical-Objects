@@ -7,39 +7,44 @@ from astropy import units as u
 from Utilities.locations_frame import Location_frame
 
 class Main_frame(ttk.Frame):
-    def __init__(self, container):  
-        super().__init__(container)   
+    def __init__(self, container, style=None):  
+        super().__init__(container, style=style)   
         self.container = container
         self.styles()
         self.widgets()
 
     def styles(self):
         self.style = ttk.Style()
-        self.style.configure('TLabel', font=('Helvetica', 10))  
+        self.style.configure('Label1.TLabel', font=('courier', 15, 'bold'), background='#2b3c46', foreground="white")  
+        self.style.configure('TButton', background='#fffade', font=('courier', 15, 'bold'))
+        self.style.configure('Label2.TLabel', font=('courier', 20, 'bold'), background='#2b3c46', foreground="white") 
+        self.style.configure('TFrame', background='#2b3c46')
 
     def widgets(self):
-        self.location = Location_frame(self,'Location')
-        self.location.pack(side=tk.LEFT)
+        self.location = Location_frame(self,'Ubicación')
+        self.location.pack(padx=50, pady=50, anchor='nw')
 
-        self.enter_button = ttk.Button(self, text = "Enter", style='TLabel', command= self.request_location)
-        self.enter_button.pack(side=tk.LEFT, padx = 10, pady = 10, anchor='s')
+        self.enter_button = ttk.Button(self, text = "Enter", style='TButton', command= self.request_location)
+        self.enter_button.pack(padx = 15, pady = 15, anchor='nw', ipadx=15, ipady=15)
 
-        self.transform_button = ttk.Button(self, text = "Transform", style='TLabel', command= self.transform_coodinates)
-        self.transform_button.pack(side=tk.LEFT, padx = 10, pady = 10, anchor='s')
+        self.transform_button = ttk.Button(self, text = "Transform", style='TButton', command= self.transform_coodinates)
+        self.transform_button.pack(padx = 15, pady = 15, anchor='nw', ipadx=15, ipady=15)
 
         self.selected_coodinate_tr = tk.StringVar()
         self.transformation = ttk.Combobox(self, textvariable=self.selected_coodinate_tr)
         self.transformation['values'] = ('Geodetic', 'Geocentric')
         self.transformation['state'] = 'readonly'
-        self.transformation.pack(side=tk.TOP, padx = 10, pady = 10, anchor='s')
+        self.transformation.pack(padx = 15, pady = 15, anchor='nw')
 
         self.coodinateText = tk.StringVar()
-        self.coodinateLabel = ttk.Label(self, textvariable = self.coodinateText)
-        self.coodinateLabel.pack(side=tk.BOTTOM, padx = 10, pady = 10, anchor='s')
+        self.coodinateText.set('...')
+        self.coodinateLabel = ttk.Label(self, textvariable = self.coodinateText, style='Label1.TLabel')
+        self.coodinateLabel.pack(padx = 10, pady = 10, anchor='s')
 
         self.transformText = tk.StringVar()
-        self.transformLabel = ttk.Label(self, textvariable = self.transformText)
-        self.transformLabel.pack(side=tk.BOTTOM, padx = 10, pady = 10, anchor='s')
+        self.transformText.set('...')
+        self.transformLabel = ttk.Label(self, textvariable = self.transformText, style='Label1.TLabel')
+        self.transformLabel.pack(padx = 10, pady = 10, anchor='s')
 
         self.transformation.current()
 
